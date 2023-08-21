@@ -6,6 +6,7 @@ import AddNote from './AddNote';
 import { auth } from './firebase';
 import Logout from './Logout';
 import Navigation from './Navigation';
+import ListNotes from './ListNotes';
 
 function AuthGuard({ children } : any) {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -41,6 +42,7 @@ const Routes: React.FC = () => {
                 <Route path="/signup" element={<AuthGuard><SignUp /></AuthGuard>} />
                 <Route path="/signin" element={<AuthGuard><SignIn /></AuthGuard>} />
                 <Route path="/addnote" element={<AuthGuard><AddNote /></AuthGuard>} />
+                <Route path="/listnotes" element={<AuthGuard><ListNotes /></AuthGuard>} />
                 <Route path="/logout" element={<Logout />} />
             </Switch>
         </Router>

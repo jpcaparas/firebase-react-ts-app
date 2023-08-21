@@ -21,6 +21,7 @@ const Navigation: React.FC = () => {
                 {isAuthenticated ? (
                     <>
                         <li><Link to="/addnote">Add Note</Link></li>
+                        <li><Link to="/listnotes">View Notes</Link></li>
                         <li><Link to="/logout">Logout</Link></li>
                     </>
                 ) : (
