@@ -1,25 +1,42 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes as Switch } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Navigate, Route, Routes as Switch } from 'react-router-dom';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import AddNote from './AddNote';
+import { auth } from './firebase';
+import Logout from './Logout';
+import Navigation from './Navigation';
+
+function AuthGuard({ children }: any) {
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+    useEffect(() => {
+        // Listen for auth state changes
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            setIsAuthenticated(!!user);
+        });
+
+        // Cleanup the listener on component unmount
+        return () => unsubscribe();
+    }, []);
+
+    if (!isAuthenticated) {
+        return children;
+    }
+
+    return <Navigate to="/addnote" replace />;
+}
 
 const Routes: React.FC = () => {
     return (
         <Router>
-            <div>
-                <nav>
-                    <ul>
-                        <li><a href="/signup">Sign Up</a></li>
-                        <li><a href="/signin">Sign In</a></li>
-                        <li><a href="/addnote">Add Note</a></li>
-                    </ul>
-                </nav>
-            </div>
+            <Navigation />
             <Switch>
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/signin" element={<SignIn />} />
+                <Route path="/signup" element={<AuthGuard><SignUp /></AuthGuard>} />
+                <Route path="/signin" element={<AuthGuard><SignIn /></AuthGuard>} />
+                {/* TODO: Add protection for the AddNote route */}
                 <Route path="/addnote" element={<AddNote />} />
+                <Route path="/logout" element={<Logout />} />
             </Switch>
         </Router>
     );
