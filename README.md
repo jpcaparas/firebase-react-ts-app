@@ -27,12 +27,12 @@ This project integrates Firebase with a React application written in TypeScript.
 
 1. Clone the repository:
 ```bash
-git clone 
+git clone git@github.com:jpcaparas/firebase-react-ts-app.git
 ```
 
 2. Install the dependencies:
 ```bash
-cd git@github.com:jpcaparas/firebase-react-ts-app.git
+cd firebase-react-ts-app
 npm install
 ```
 
