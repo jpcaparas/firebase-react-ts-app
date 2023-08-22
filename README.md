@@ -15,8 +15,7 @@ This project integrates Firebase with a React application written in TypeScript.
 
 - User authentication (Sign Up, Sign In, and Logout).
 - Protection of routes based on authentication status.
-- Add notes (only for authenticated users).
-- Responsive and user-friendly design.
+- Adding, viewing and deleting notes (only for authenticated users).
 
 ## Prerequisites
 
@@ -37,9 +36,9 @@ npm install
 ```
 
 3. Set up your Firebase environment:
-   - Head to Firebase console and create a new project if you haven't already.
-   - Copy the Firebase project configuration.
-   - Create a `.env` file in the root of the project and paste your configuration as shown:
+- Head to Firebase console and create a new project if you haven't already.
+- Copy the Firebase project configuration.
+- Create a `.env` file in the root of the project and paste your configuration as shown:
 
 ```env
 REACT_APP_FIREBASE_API_KEY=your-api-key
